@@ -1,6 +1,7 @@
 import http from 'http';
+import { ProductCollection } from './settings';
 
-export const getPidList = (lang = 'en'): Promise<any> => {
+export const getPidList = (lang = 'en'): Promise<Array<ProductCollection>> => {
   const options = {
     host: 'api-us.doiting.com',
     path: `/api/device_product/model?lang=${lang}`,

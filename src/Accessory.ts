@@ -2,7 +2,7 @@ import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
 import { createConnection } from 'net';
 
 import { CozyPlatform } from './platform';
-import { CMD_QUERY, CMD_SET, TCP_CLIENT_PORT, DeviceConfig, CMD_STATUS_REPORT } from './settings';
+import { CMD_QUERY, CMD_SET, TCP_CLIENT_PORT, DeviceConfig, CMD_STATUS_REPORT, AccessoryRes } from './settings';
 import commands from './commands';
 
 /**
@@ -14,7 +14,7 @@ import commands from './commands';
 class CozyAccessory {
 
   protected status: Record<string, unknown>;
-  protected statusInterval: any;
+  protected statusInterval: NodeJS.Timeout | undefined;
 
   constructor(
     public readonly platform: CozyPlatform,
@@ -93,7 +93,7 @@ class CozyAccessory {
   }
 
 
-  async sendMessage(message) {
+  async sendMessage(message): Promise<AccessoryRes> {
     return new Promise((resolve, reject) => {
       this.platform.log.debug(this.getIp(), TCP_CLIENT_PORT, message);
       const client = createConnection({
@@ -150,7 +150,7 @@ class CozyAccessory {
       },
     };
 
-    this.sendMessage(message).then((res: any) => {
+    this.sendMessage(message).then((res: AccessoryRes) => {
       this.updateStatus(res.msg.data);
     }).catch((err) => {
       this.platform.log.error('get device status error: %j', err);
@@ -209,7 +209,7 @@ export class CozySwitch extends CozyAccessory {
         ? commands.power.value.on
         : commands.power.value.off,
     };
-    this.sendCommand(command).then((res: any) => {
+    this.sendCommand(command).then((res: AccessoryRes) => {
       if (res.res !== 0) {
         this.platform.log.error('set power error response: %j', res);
       } else if (

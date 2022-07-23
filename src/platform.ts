@@ -16,10 +16,12 @@ import {
   DEFAULT_PLATFORM_CONFIG,
   UDP_SCAN_ADDRESS,
   UDP_SCAN_PORT,
-  LocaleMessages,
   CMD_INFO,
   TYPE_CODE_SWITCH,
   TYPE_CODE_LIGHT,
+
+  LocaleMessages,
+  ProductCollection,
 } from './settings';
 
 import {
@@ -54,7 +56,7 @@ export class CozyPlatform implements DynamicPlatformPlugin {
   scanCount: number;
   timer: NodeJS.Timeout | undefined;
   messages: LocaleMessages;
-  pidList: Array<any> | undefined;
+  pidList: Array<ProductCollection> | undefined;
 
   constructor(
     public readonly log: Logger,

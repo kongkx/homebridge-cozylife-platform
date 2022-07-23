@@ -22,6 +22,22 @@ export interface DeviceConfig {
   disabled?: boolean;
 }
 
+export interface ModelDesc {
+  device_product_id: string;
+}
+export interface ProductCollection {
+  device_type_code: string;
+  device_model: Array<ModelDesc>;
+}
+
+export interface AccessoryRes {
+  cmd: number;
+  pv: number;
+  sn: string;
+  msg: Record<string, unknown>;
+  res: number;
+}
+
 export const DEFAULT_PLATFORM_CONFIG = {
   name: 'Cozylife platform',
   port: 5555,
