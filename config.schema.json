@@ -1,0 +1,71 @@
+{
+  "pluginAlias": "CozylifePlatform",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "Cozylife"
+      },
+      "language": {
+        "title": "Language",
+        "type": "string",
+        "default": "zh-CN",
+        "oneOf": [
+          { "title": "简体中文", "enum": ["zh-CN"] },
+          { "title": "English", "enum": ["en"] }
+        ]
+      },
+      "port": {
+        "title": "Port",
+        "type": "integer",
+        "default": 5555,
+        "description": "UDP socket server port to bind"
+      },
+      "scanCount": {
+        "title": "Scan count",
+        "type": "integer",
+        "placeholder": 10,
+        "minimum": 0
+      },
+      "scanInterval": {
+        "title": "Scan interval",
+        "type": "integer",
+        "placeholder": 3000,
+        "minimum": 3000
+      },
+      "checkStatusInterval": {
+        "title": "Check accessory status interval",
+        "type": "integer",
+        "placeholder": 10000,
+        "minimum": 3000
+      },
+      "devices": {
+        "title": "Devices",
+        "type": "array",
+        "items": {
+          "title": "Device",
+          "type": "object",
+          "properties": {
+            "mac": {
+              "title": "Mac Address (Serial Number)",
+              "type": "string",
+              "required": true
+            },
+            "name": {
+              "title": "Custom Device Name",
+              "type": "string"
+            },
+            "disabled": {
+              "title": "Disabled",
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "bridge": {
+    "name": "Cozylife Development",
+    "username": "8C:85:90:8A:C7:84",
+    "port": 51828
+  },
+  "description": "This is an configuration file for local development of the Cozylife platform plugin",
+  "accessories": [],
+  "platforms": [
+    {
+      "platform": "config",
+      "port": 8581
+    },
+    {
+      "platform": "CozylifePlatform",
+      "name": "Cozylife",
+      "port": 5555,
+      "scanCount": 3
+    }
+  ]
+}
