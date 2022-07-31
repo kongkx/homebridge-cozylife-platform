@@ -52,7 +52,7 @@ class CozyAccessory {
 
   start = () => {
     this.getDeviceStatus();
-    if (!Number(this.platform.config.checkStatusInterval)) {
+    if (Number(this.platform.config.checkStatusInterval)) {
       this.statusInterval = setInterval(() => {
         this.getDeviceStatus();
       }, this.platform.config.checkStatusInterval);

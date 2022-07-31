@@ -47,6 +47,8 @@ npm install homebridge-cozylife-platform
 ## TODO
 
 - [ ] Light Accessory
+- [ ] Accurate Switch Control
+  - [ ] Init N Switch based on config file
 
 ## Development
 
