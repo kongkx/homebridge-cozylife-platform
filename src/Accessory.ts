@@ -196,7 +196,10 @@ export class CozySwitch extends CozyAccessory {
 
 
   get power() {
-    return this.status[commands.power.code] === commands.power.value.on;
+    // NOTE: val === 0b1111111 || val === 0b01111111 ..... val === 0b00000001
+    const val = this.status[commands.power.code] as number;
+    return val > 0;
+    // return this.status[commands.power.code] === commands.power.value.on;
   }
 
   set power(value) {
